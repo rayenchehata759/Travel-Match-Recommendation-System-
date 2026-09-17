@@ -1,0 +1,20 @@
+# Environnement virtuel
+venv/
+.venv/
+
+# Base de données (peut être lourde, et généré par les scripts)
+*.db
+
+# Fichiers pickle (embeddings, peuvent être lourds)
+*.pkl
+
+# Fichiers Python compilés
+__pycache__/
+*.pyc
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+
+# Clé API (si tu choisis de l'externaliser)
+config.js

@@ -1,0 +1,198 @@
+<!DOCTYPE html><html class="light" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>TravelMatch - Find Your Perfect Destination</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="config.js"></script>
+<script src="script.js"></script>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md antialiased min-h-screen flex flex-col">
+<!-- HEADER: TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-glass-overlay backdrop-blur-md shadow-sm">
+<div class="flex justify-between items-center px-container-padding py-4 max-w-7xl mx-auto">
+<div class="font-headline-md text-headline-md font-bold text-primary flex items-center gap-2">
+                TravelMatch
+            </div>
+<!-- Desktop Navigation -->
+<nav class="hidden md:flex items-center gap-8">
+<a class="font-label-md text-label-md text-primary border-b-2 border-primary font-bold pb-1 hover:opacity-80 transition-all duration-200 scale-95 active:scale-90" href="#">Explore</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors hover:opacity-80 transition-all duration-200 scale-95 active:scale-90" href="#">My Matches</a>
+<a class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors hover:opacity-80 transition-all duration-200 scale-95 active:scale-90" href="#">About</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="hidden md:flex items-center justify-center bg-transparent border-[1.5px] border-primary text-primary font-label-md text-label-md px-6 py-2 rounded-[16px] hover:bg-primary/5 transition-colors">
+                    Sign In
+                </button>
+<button class="md:hidden text-primary">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<button class="hidden md:flex text-primary hover:opacity-80 transition-all duration-200 scale-95 active:scale-90">
+<span class="material-symbols-outlined" data-icon="account_circle" style="font-variation-settings: 'FILL' 0;">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<!-- MAIN CONTENT -->
+<main class="flex-grow pt-32 pb-section-gap px-container-padding max-w-7xl mx-auto w-full">
+<!-- HERO & SEARCH SECTION -->
+<section class="mb-section-gap flex flex-col items-center text-center">
+<h1 class="font-display-lg text-display-lg text-primary mb-4">Describe your perfect trip</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-12 max-w-2xl">Tell us what you're looking for, we'll find the destination.</p>
+<div class="w-full max-w-4xl bg-surface-white rounded-xl shadow-[0_4px_24px_rgba(0,94,83,0.04)] p-8 relative z-10">
+<textarea id="search-query" class="w-full h-32 p-4 bg-surface-container-low border-none rounded-lg resize-none font-body-lg text-body-lg text-on-surface focus:ring-2 focus:ring-primary/20 placeholder-outline" placeholder="e.g. calm place surrounded by nature, not too crowded, good for hiking..."></textarea>
+<div class="mt-8 flex items-center justify-end border-t border-outline-variant/30 pt-6">
+    <button id="search-button" class="w-full md:w-auto px-8 py-3 bg-[#FF8A80] text-surface-white rounded-full font-label-md text-label-md shadow-sm hover:opacity-90 transition-all hover:-translate-y-0.5 active:translate-y-0">
+        Find destinations
+    </button>
+</div>
+</div>
+</section>
+<!-- ADVANCED FILTERS (Bento-ish Grid) -->
+<section class="mb-section-gap grid grid-cols-1 md:grid-cols-12 gap-card-gap">
+<div class="md:col-span-12 font-headline-md text-headline-md text-primary mb-2">Refine Preferences</div>
+<!-- Sliders Grid -->
+<div class="md:col-span-8 bg-surface-white rounded-xl shadow-[0_4px_24px_rgba(0,94,83,0.04)] p-6">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-6">
+<!-- Slider Item -->
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-[18px]" data-icon="museum">museum</span>
+<span class="font-label-md text-label-md">Culture</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline" id="val-culture">3/5</span>
+</div>
+<input id="slider-culture" lass="w-full h-1 bg-surface-variant rounded-full outline-none slider-thumb" max="5" min="1" type="range" value="3" data-value-target="val-culture">
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-[18px]" data-icon="hiking">hiking</span>
+<span class="font-label-md text-label-md">Adventure</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline" id="val-adventure">4/5</span>
+</div>
+<input id="slider-adventure" class="w-full h-1 bg-surface-variant rounded-full outline-none slider-thumb" max="5" min="1" type="range" value="4" data-value-target="val-adventure">
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-[18px]" data-icon="forest">forest</span>
+<span class="font-label-md text-label-md">Nature</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline" id="val-nature">5/5</span>
+</div>
+<input id="slider-nature" class="w-full h-1 bg-surface-variant rounded-full outline-none slider-thumb" max="5" min="1" type="range" value="5" data-value-target="val-nature">
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-[18px]" data-icon="beach_access">beach_access</span>
+<span class="font-label-md text-label-md">Beaches</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline" id="val-beaches">1/5</span>
+</div>
+<input id="slider-beaches" class="w-full h-1 bg-surface-variant rounded-full outline-none slider-thumb" max="5" min="1" type="range" value="1" data-value-target="val-beaches">
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-[18px]" data-icon="nightlife">nightlife</span>
+<span class="font-label-md text-label-md">Nightlife</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline" id="val-nightlife">2/5</span>
+</div>
+<input id="slider-nightlife" class="w-full h-1 bg-surface-variant rounded-full outline-none slider-thumb" max="5" min="1" type="range" value="2" data-value-target="val-nightlife">
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-[18px]" data-icon="restaurant">restaurant</span>
+<span class="font-label-md text-label-md">Cuisine</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline" id="val-cuisine">4/5</span>
+</div>
+<input id="slider-cuisine" class="w-full h-1 bg-surface-variant rounded-full outline-none slider-thumb" max="5" min="1" type="range" value="4" data-value-target="val-cuisine">
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-[18px]" data-icon="spa">spa</span>
+<span class="font-label-md text-label-md">Wellness</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline" id="val-wellness">3/5</span>
+</div>
+<input id="slider-wellness" class="w-full h-1 bg-surface-variant rounded-full outline-none slider-thumb" max="5" min="1" type="range" value="3" data-value-target="val-wellness">
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-[18px]" data-icon="location_city">location_city</span>
+<span class="font-label-md text-label-md">Urban</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline" id="val-urban">1/5</span>
+</div>
+<input id="slider-urban" class="w-full h-1 bg-surface-variant rounded-full outline-none slider-thumb" max="5" min="1" type="range" value="1" data-value-target="val-urban">
+</div>
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2 text-primary">
+<span class="material-symbols-outlined text-[18px]" data-icon="nature">nature</span>
+<span class="font-label-md text-label-md">Seclusion</span>
+</div>
+<span class="font-label-sm text-label-sm text-outline" id="val-seclusion">5/5</span>
+</div>
+<input id="slider-seclusion" class="w-full h-1 bg-surface-variant rounded-full outline-none slider-thumb" max="5" min="1" type="range" value="5" data-value-target="val-seclusion">
+</div>
+</div>
+</div>
+<!-- AI Weighting -->
+<div class="md:col-span-4 bg-surface-white rounded-xl shadow-[0_4px_24px_rgba(0,94,83,0.04)] p-6 flex flex-col justify-center">
+<h3 class="font-headline-md text-[20px] text-primary mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined" data-icon="tune">tune</span> Match Logic
+                </h3>
+<div class="flex flex-col gap-4">
+<div class="flex justify-between font-label-sm text-label-sm text-on-surface-variant">
+<span class="">Strict Text Match</span>
+<span class="">Sliders Only</span>
+</div>
+<input id="slider-coefficient" class="w-full h-2 bg-gradient-to-r from-secondary-container via-primary-container to-secondary-container rounded-full outline-none slider-thumb" max="100" min="0" type="range" value="40">
+<p class="font-body-md text-[14px] text-outline mt-2 text-center">Balanced interpretation</p>
+</div>
+</div>
+</section>
+<!-- RESULTS GRID -->
+<section>
+<div class="flex justify-between items-end mb-6 border-b border-outline-variant/30 pb-4">
+<h2 class="font-headline-lg text-headline-lg text-primary">Your Matches</h2>
+<span class="font-label-md text-label-md text-on-surface-variant">Found 5 destinations</span>
+</div>
+<div id="results-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-card-gap">
+<!-- Les cartes seront générées ici dynamiquement -->
+
+</div>
+</section>
+</main>
+<!-- FOOTER: Footer -->
+<footer class="w-full py-base bg-surface-container-low dark:bg-surface-dim border-t border-outline-variant dark:border-outline flat no shadows mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-center px-container-padding py-12 gap-gutter max-w-7xl mx-auto">
+<div class="font-headline-md text-headline-md text-on-surface">
+                TravelMatch
+            </div>
+<nav class="flex gap-6 font-label-sm text-label-sm text-on-surface-variant">
+<a class="hover:text-primary underline transition-all opacity-100 hover:opacity-80" href="#">Privacy Policy</a>
+<a class="hover:text-primary underline transition-all opacity-100 hover:opacity-80" href="#">Terms of Service</a>
+<a class="hover:text-primary underline transition-all opacity-100 hover:opacity-80" href="#">Cookie Settings</a>
+</nav>
+<div class="font-body-md text-body-md text-on-surface-variant">
+                © 2024 TravelMatch. Your Discerning Guide to the World.
+            </div>
+</div>
+</footer>
+
+
+</body></html>

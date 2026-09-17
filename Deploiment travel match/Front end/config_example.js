@@ -1,0 +1,1 @@
+const UNSPLASH_ACCESS_KEY = "your_unsplash_api_key_here";
